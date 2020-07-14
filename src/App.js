@@ -19,8 +19,8 @@ const App = () => {
 const [posts, setPosts] = useState(PostData);
   // To make the search bar work (which is stretch) we'd need another state to hold the search term.
 
-const addComment = postId => {
-  setPosts(posts.map(x => x.id === postId ? {...x, comments: [...x.comments, {id: 1, username: "hello", text: "ok"}]} : x))
+const addComment = (postId, username, comment) => {
+  setPosts(posts.map(x => x.id === postId ? {...x, comments: [...x.comments, {id: 0, username: username, text: comment}]} : x))
 }
 
   const likePost = postId => {
