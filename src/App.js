@@ -19,6 +19,10 @@ const App = () => {
 const [posts, setPosts] = useState(PostData);
   // To make the search bar work (which is stretch) we'd need another state to hold the search term.
 
+const addComment = postId => {
+  setPosts(posts.map(x => x.id === postId ? {...x, comments: [...x.comments, {id: 1, username: "hello", text: "ok"}]} : x))
+}
+
   const likePost = postId => {
     // This function is passed into nested components using props, to allow them to update application state.
     // It takes a post id as its only argument. The idea is to increase the 'likes' count of the post with the given `id`.
@@ -33,7 +37,7 @@ const [posts, setPosts] = useState(PostData);
     <div className="App">
       {/* Add SearchBar and Posts here to render them */}
       <SearchBar />
-      <PostContainer posts={posts} likePost={likePost}/>
+      <PostContainer posts={posts} likePost={likePost} addComment={addComment}/>
       {/* Check the implementation of each component, to see what props they require, if any! */}
     </div>
   );
